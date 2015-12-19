@@ -24,6 +24,16 @@ Pos.Schema.Tables = new SimpleSchema({
     branchId: {
         type: String,
         label: "Branch"
+    },
+    left:{
+        type:String,
+        label:"Left",
+        optional:true
+    },
+    top:{
+        type:String,
+        label:"Top",
+        optional:true
     }
 });
 Pos.Collection.Tables.attachSchema(Pos.Schema.Tables);

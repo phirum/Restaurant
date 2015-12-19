@@ -18,7 +18,7 @@ posRoutes.route('/table', {
     breadcrumb: {
         //params: ['id'],
         //queryParams: ['show', 'color'],
-        title: 'Location',
+        title: 'Table',
         parent: 'pos.home'
     }
 });
