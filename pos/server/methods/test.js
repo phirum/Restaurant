@@ -1,6 +1,7 @@
 Meteor.methods({
     insertCustomer: function () {
         for (var i = 1; i <= 10000; i++) {
+            var prefix="001-";
             var customer = {};
             customer._id = idGenerator.genWithPrefix(Pos.Collection.Customers, prefix, 6);
             customer.name = "Name" + i;
