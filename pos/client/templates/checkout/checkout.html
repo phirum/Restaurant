@@ -7,19 +7,55 @@
                         <h3 class="panel-title"><b>Sale</b></h3>
                     </div>
                     <div class="panel-body">
-                        {{#each categories}}
+                        <!--    {{#each categories}}
                             <ol>
                                 <li>
                                     {{name}}
                                     <ul>
                                         {{#each products}}
-                                            {{name}}
-                                        {{/each}}
+                            {{>showProduct}}
+                        {{/each}}
                                     </ul>
                                 </li>
                             </ol>
 
-                        {{/each}}
+                        {{/each}}-->
+                        <div class="row">
+                            <div class="col-lg-1" style="text-align: center">
+                                <div class="row"><h5>Unit</h5></div>
+                                {{#each units}}
+                                    <div class="row">
+                                        <div style="width: 100px; margin: 2px;"
+                                             class="btn {{#if thatUnit _id}} btn-success{{else}} btn-primary{{/if}} unit">{{name}}</div>
+                                    </div>
+                                {{/each}}
+
+                            </div>
+                            <div class="col-lg-11">
+                                <ul id="myTabs" class="nav nav-tabs" role="tablist">
+                                    {{#each categories}}
+                                        <li role="presentation">
+                                            <a href="#{{_id}}" id="home-tab" role="tab" data-toggle="tab"
+                                               aria-controls="home" aria-expanded="true">
+                                                {{name}}
+                                            </a>
+                                        </li>
+                                    {{/each}}
+
+                                </ul>
+                                <div id="myTabContent" class="tab-content">
+                                    {{#each categories}}
+                                        <div role="tabpanel" class="tab-pane fade in active" id="{{_id}}"
+                                             aria-labelledby="home-tab">
+                                            {{#each products}}
+                                                {{> pos_showProduct}}
+                                            {{/each}}
+                                        </div>
+                                    {{/each}}
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>

@@ -1,5 +1,4 @@
-Session.setDefault('isRetail', true);
-Session.setDefault('hasUpdate', false);
+Session.setDefault('unitSession', null);
 Template.pos_checkout.onRendered(function () {
     createNewAlertify(["customer", "userStaff"]);
     Session.set('isRetail', true);
@@ -22,12 +21,27 @@ Template.pos_checkout.onRendered(function () {
     }, 500);
 });
 Template.pos_checkout.helpers({
+    thatUnit: function (unitId) {
+        return unitId == Session.get('unitSession');
+    },
     categories: function () {
-        debugger;
         return ReactiveMethod.call('findRecords', 'Pos.Collection.Categories', {}, {});
     },
+    units: function () {
+        return ReactiveMethod.call('findRecords', 'Pos.Collection.Units', {}, {});
+    },
     products: function () {
-        return ReactiveMethod.call('findRecords', 'Pos.Collection.Products', {categoryId: this._id}, {});
+        var selector = {};
+        selector.categoryId = this._id;
+        var unitSession = Session.get('unitSession');
+        if (unitSession) {
+            selector.unitId = unitSession;
+        }
+        return ReactiveMethod.call('findProducts', selector, {});
     }
 });
-Template.pos_checkout.events({});
+Template.pos_checkout.events({
+    'click .unit': function () {
+        Session.set('unitSession', this._id);
+    }
+});

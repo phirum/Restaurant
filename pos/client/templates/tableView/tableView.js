@@ -1,13 +1,11 @@
 var posTableViewTPL = Template.pos_tableView;
 
-posTableViewTPL.events({
-
-});
+posTableViewTPL.events({});
 posTableViewTPL.helpers({
-    tableLocations:function(){
-       return Pos.Collection.TableLocations.find();
+    tableLocations: function () {
+        return ReactiveMethod.call('findRecords', 'Pos.Collection.TableLocations', {}, {});
     },
-    tables:function(){
-        return Pos.Collection.Tables.find({tableLocationId:this._id});
+    tables: function () {
+        return ReactiveMethod.call('findRecords', 'Pos.Collection.Tables', {tableLocationId: this._id}, {});
     }
 });
