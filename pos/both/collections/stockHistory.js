@@ -1,1 +1,0 @@
-Pos.Collection.StockHistories = new Mongo.Collection("pos_stockHistories");
